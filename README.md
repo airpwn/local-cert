@@ -1,5 +1,4 @@
 # Local Setting For My Ubuntu
-Local Cert for Local Server
 
 #### Certificate Installed ####
 ```shell 
