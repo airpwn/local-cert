@@ -1,0 +1,1 @@
+Certificate for Handycache Proxy
