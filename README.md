@@ -7,5 +7,5 @@ wget --no-check-certificate https://raw.githubusercontent.com/airpwn/local-cert/
 ```
 ######Centos######
 ```shell 
-wget --no-check-certificate https://raw.githubusercontent.com/airpwn/local-cert/master/certs/cert1.crt;wget --no-check-certificate https://raw.githubusercontent.com/airpwn/local-cert/master/certs/cert2.crt;cp *.crt /etc/pki/ca-trust/source/anchors/;update-ca-trust extract
+wget --no-check-certificate https://raw.githubusercontent.com/airpwn/local-cert/master/certs/cert1.crt;wget --no-check-certificate https://raw.githubusercontent.com/airpwn/local-cert/master/certs/cert2.crt;cp *.crt /etc/pki/ca-trust/source/anchors/;update-ca-trust enable;update-ca-trust extract
 ```
