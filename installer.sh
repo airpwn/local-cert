@@ -4,7 +4,6 @@
 ####################################################
 ##                                                ##
 ##                                                ##
-# Define variables
 RED='\033[0;41;30m'
 STD='\033[0;0;39m'
 trap '' SIGINT SIGQUIT SIGTSTP
@@ -126,12 +125,51 @@ function setting_network_addproxy {
 }
 
 ###### Installations 
-function installations_centoswebpanel {
+
+### Start Centos Web Panel
+function cwp_msql51 {
 	clear
-	echo "install centos web panel"
+	cwp_cheking
+	wget http://centos-webpanel.com/cwp-latest
+	sh cwp-latest
 	pause
 	clear
 }
+function cwp_mariadb10110 {
+	clear
+	cwp_cheking
+	wget http://centos-webpanel.com/cwp-latest
+	sh cwp-latest -d mariadb
+	pause
+	clear
+}
+function cwp_cheking {
+	echo "Cheking & Update"
+	echo "Installing wget"
+	yum -y install wget
+	echo "Update Package"
+	yum -y update
+}
+function installations_centoswebpanel {
+	clear
+	option=0
+	until [ "$option" = "2" ]; do
+	echo "  1.) Install Centos Web Panel with MySQL version 5.1"
+	echo "  2.) Install Centos Web Panel with MARIA-DB 10.1.10"
+	echo "  0.) Quit"
+
+	echo -n "Enter choice: "
+	read option
+	echo ""
+	case $option in
+		1 ) cwp_msql51 ;;
+		2 ) cwp_mariadb10110 ;;
+		0 ) clear;exit 0;;
+		* ) echo -e "${RED}Error... Please Input the right choice${STD}" && clear
+	esac
+	done
+}
+### End Centos Web Panel
 
 ### Start Kloxo-MR
 # Checking Kloxo
@@ -275,9 +313,14 @@ function installations_usermin {
 	clear
 }
 ### End ( Web | Virtual | Cloud | User ) min
+
+### Start Webuzo 
 function installations_webuzo {
 	clear
-	echo "install Webuzo"
+	echo "Installing Webuzo"
+	wget http://files.webuzo.com/install.sh 
+	chmod 0755 install.sh
+	bash ./install.sh
 	pause
 	clear
 }
